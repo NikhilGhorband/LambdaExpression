@@ -20,7 +20,7 @@
                 Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Address: {student.Address}, Age: {student.Age}");
             }
 
-            //Retrieve all records from the list for age between 12 to 18 
+            //Retrieve all records from the list for age between 12 to 18 using LINQ
             var ageFilteredStudents = students.Where(student => student.Age >= 12 && student.Age <= 18);
             Console.WriteLine("\nStudents between the age of 12 and 18:");
             foreach (var student in ageFilteredStudents)
@@ -30,7 +30,6 @@
 
 
             // Sort students data in descending order based on TotalMarks (not mentioned in the Student class)
-            
             var sortedStudents = students.OrderByDescending(student => student.Age);
             Console.WriteLine("\nStudents sorted by age in descending order:");
             foreach (var student in sortedStudents)
@@ -51,6 +50,14 @@
                 }
                 Console.WriteLine();
             }
+            // Fetch first three students records
+            var firstThreeStudents = students.Take(3);
+            Console.WriteLine("\nFirst three students:");
+            foreach (var student in firstThreeStudents)
+            {
+                Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Address: {student.Address}, Age: {student.Age}");
+            }
         }
     }
+
 }

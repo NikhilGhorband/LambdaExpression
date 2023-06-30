@@ -12,50 +12,19 @@
             students.Add(new Student { Id = 4, Name = "Nakul", PhoneNumber = "321654789", Address = "kandhar", Age = 14 });
             students.Add(new Student { Id = 5, Name = "Chunchu", PhoneNumber = "789456123", Address = "Sambhajinagar", Age = 16 });
 
+            
+            
+            // Search for a particular student based on name using lambda expression
 
-            // Display all student details
-            Console.WriteLine("All Student Details:");
-            foreach (var student in students)
+            var searchName = "Nikhil" + "";
+            var searchedStudent = students.FirstOrDefault(student => student.Name.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+            if (searchedStudent != null)
             {
-                Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Address: {student.Address}, Age: {student.Age}");
+                Console.WriteLine($"\nStudent found - Id: {searchedStudent.Id}, Name: {searchedStudent.Name}, Phone Number: {searchedStudent.PhoneNumber}, Address: {searchedStudent.Address}, Age: {searchedStudent.Age}");
             }
-
-            //Retrieve all records from the list for age between 12 to 18 using LINQ
-            var ageFilteredStudents = students.Where(student => student.Age >= 12 && student.Age <= 18);
-            Console.WriteLine("\nStudents between the age of 12 and 18:");
-            foreach (var student in ageFilteredStudents)
+            else
             {
-                Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Address: {student.Address}, Age: {student.Age}");
-            }
-
-
-            // Sort students data in descending order based on TotalMarks (not mentioned in the Student class)
-            var sortedStudents = students.OrderByDescending(student => student.Age);
-            Console.WriteLine("\nStudents sorted by age in descending order:");
-            foreach (var student in sortedStudents)
-            {
-                Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Address: {student.Address}, Age: {student.Age}");
-            }
-
-
-            // Display all the student records in each address
-            var studentsByAddress = students.GroupBy(student => student.Address);
-            Console.WriteLine("\nStudents by Address:");
-            foreach (var group in studentsByAddress)
-            {
-                Console.WriteLine($"Address: {group.Key}");
-                foreach (var student in group)
-                {
-                    Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Age: {student.Age}");
-                }
-                Console.WriteLine();
-            }
-            // Fetch first three students records
-            var firstThreeStudents = students.Take(3);
-            Console.WriteLine("\nFirst three students:");
-            foreach (var student in firstThreeStudents)
-            {
-                Console.WriteLine($"Id: {student.Id}, Name: {student.Name}, Phone Number: {student.PhoneNumber}, Address: {student.Address}, Age: {student.Age}");
+                Console.WriteLine($"\nStudent with name '{searchName}' not found.");
             }
         }
     }
